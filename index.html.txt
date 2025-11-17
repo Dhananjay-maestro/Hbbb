@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday Princee 🎀</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1:#fff6fb;
+      --bg2:#eef9ff;
+      --accent1:#ff2d7a;
+      --accent2:#ff87c4;
+      --muted:#585858;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(135deg,var(--bg1),var(--bg2)); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
+    /* Stage */
+    .stage{height:100vh; width:100vw; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; padding:28px}
+    /* soft glows */
+    .glow{position:absolute;border-radius:50%;filter:blur(100px);opacity:.28;pointer-events:none}
+    .g1{width:520px;height:520px;background:radial-gradient(circle at 25% 25%, #ffd9ec, transparent 40%); left:-120px; top:-80px}
+    .g2{width:640px;height:640px;background:radial-gradient(circle at 75% 75%, #dff6ff, transparent 40%); right:-160px; bottom:-120px}
+    /* Card */
+    .card{
+      width:min(1100px,96%); max-width:1320px; height:min(760px,94vh);
+      background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.90));
+      border-radius:28px; box-shadow:0 30px 90px rgba(20,20,50,0.12);
+      display:grid; grid-template-columns: 1fr 1fr; gap:28px; padding:34px; align-items:center; position:relative; overflow:visible;
+    }
+    /* Left visual */
+    .visual{position:relative; display:flex; align-items:center; justify-content:center; padding:10px}
+    .stage-illustration{width:420px; height:520px; position:relative}
+    .balloon{position:absolute; will-change:transform,opacity; transform-origin:center bottom; user-select:none}
+    .b1{left:6%; bottom:8%; width:140px; animation:rise 6.2s ease-in-out infinite}
+    .b2{left:36%; bottom:14%; width:160px; animation:rise 5.6s ease-in-out infinite}
+    .b3{right:6%; bottom:10%; width:128px; animation:rise 7.0s ease-in-out infinite}
+    @keyframes rise{0%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-28px) rotate(6deg)}100%{transform:translateY(0) rotate(-6deg)}}
+    /* subtle cake vector */
+    .cake{position:absolute; left:50%; bottom:8%; transform:translateX(-50%); width:260px; opacity:.98}
+    /* Right content */
+    .content{padding:10px 18px; display:flex; flex-direction:column; gap:12px; justify-content:center}
+    .tag{font-family:Merienda, cursive; color:var(--accent1); background:linear-gradient(90deg, rgba(255,45,122,0.06), rgba(255,135,196,0.04)); padding:8px 14px; border-radius:18px; font-size:1rem; display:inline-block}
+    h1{font-family:Merienda, cursive; font-size:3.6rem; margin:6px 0 6px; color:var(--accent2); line-height:1}
+    .subtitle{font-size:1.05rem; color:var(--muted); max-width:560px}
+    .actions{display:flex; gap:12px; margin-top:8px; align-items:center}
+    .btn{
+      background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; padding:12px 18px; border-radius:12px; border:0; font-weight:700; cursor:pointer; box-shadow:0 12px 30px rgba(255,45,122,0.12)
+    }
+    .btn.ghost{background:transparent; color:var(--accent2); border:1px solid rgba(255,131,199,0.12); box-shadow:none; font-weight:600}
+    .small-note{font-size:.92rem; color:#707070; margin-top:6px}
+    /* confetti canvas */
+    #confetti{position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none}
+    /* sparkles container */
+    .sparkles{position:absolute; inset:0; pointer-events:none}
+    .spark{position:absolute; width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.92); box-shadow:0 0 18px rgba(255,255,255,0.95)}
+    /* responsive */
+    @media (max-width:960px){
+      .card{grid-template-columns:1fr; height:auto; padding:22px}
+      h1{font-size:2.2rem}
+      .stage-illustration{width:320px;height:380px}
+      .cake{width:180px}
+    }
+  </style>
+</head>
+<body>
+  <div class="stage" role="main" aria-label="Full screen birthday greeting for Princee">
+    <div class="glow g1" aria-hidden="true"></div>
+    <div class="glow g2" aria-hidden="true"></div>
+
+    <div class="card" id="card">
+      <!-- confetti canvas -->
+      <canvas id="confetti" aria-hidden="true"></canvas>
+
+      <!-- LEFT: illustration -->
+      <div class="visual" aria-hidden="true">
+        <div class="stage-illustration" aria-hidden="true">
+          <img class="balloon b1" src="https://i.imgur.com/2KQpVQv.png" alt="" />
+          <img class="balloon b2" src="https://i.imgur.com/6Y0Qb6u.png" alt="" />
+          <img class="balloon b3" src="https://i.imgur.com/5Y3Xb9G.png" alt="" />
+          <!-- simple cake PNG -->
+          <img class="cake" src="https://i.imgur.com/0K7Y3vD.png" alt="" />
+        </div>
+      </div>
+
+      <!-- RIGHT: content -->
+      <div class="content">
+        <div class="tag" aria-hidden="true">For Princee</div>
+        <h1>Happy Birthday <span style="color:var(--accent1)">Princee</span> 🎀</h1>
+        <div class="subtitle">Wishing you a day full of sparkles, warm hugs, and the sweetest surprises ✨</div>
+
+        <div class="actions" role="group" aria-label="Actions">
+          <button class="btn" id="partyBtn">Celebrate 🎉</button>
+          <button class="btn ghost" id="photoBtn">Add Photo</button>
+          <button class="btn ghost" id="musicToggle">Play Music ♪</button>
+        </div>
+
+        <div class="small-note">Tip: Click “Celebrate” for full screen confetti and sparkles.</div>
+      </div>
+
+      <!-- sparkles (DOM) -->
+      <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+    </div>
+
+    <!-- optional audio (gentle, loop) -->
+    <audio id="bgAudio" loop preload="auto">
+      <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_2f0f7b8e7f.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    /* -------- confetti canvas -------- */
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let W, H, pieces = [], animId;
+
+    function fitCanvas(){
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      W = canvas.width; H = canvas.height;
+    }
+    window.addEventListener('resize', fitCanvas);
+    fitCanvas();
+
+    function rand(a,b){ return Math.random()*(b-a)+a }
+
+    function spawn(n = 140){
+      for(let i=0;i<n;i++){
+        pieces.push({
+          x: rand(0, W),
+          y: rand(-H, 0),
+          w: rand(6, 14),
+          h: rand(8, 18),
+          r: rand(0, 360),
+          velX: rand(-1.6, 1.6),
+          velY: rand(2, 6),
+          rotSpeed: rand(-3,3),
+          color: ['#ff2d7a','#ffcf4d','#8de0a6','#00bcd4','#ff8bcf'][Math.floor(rand(0,5))],
+          tilt: rand(-15,15)
+        });
+      }
+      if(!animId) animate();
+    }
+
+    function drawPieces(){
+      ctx.clearRect(0,0,W,H);
+      for(let i=0;i<pieces.length;i++){
+        const p = pieces[i];
+        p.x += p.velX; p.y += p.velY; p.r += p.rotSpeed;
+        // draw rounded rect-ish confetti
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.r * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+        ctx.restore();
+      }
+      // remove off-screen
+      pieces = pieces.filter(p => p.y < H + 40);
+      if(pieces.length === 0){ cancelAnimationFrame(animId); animId = null; ctx.clearRect(0,0,W,H) }
+    }
+    function animate(){ animId = requestAnimationFrame(animate); drawPieces(); }
+
+    /* -------- sparkles DOM -------- */
+    const sparkles = document.getElementById('sparkles');
+    function makeSparkles(n=16){
+      for(let i=0;i<n;i++){
+        const d = document.createElement('div');
+        d.className = 'spark';
+        const left = 8 + Math.random()*84;
+        const top = 8 + Math.random()*84;
+        d.style.left = left + '%';
+        d.style.top = top + '%';
+        d.style.opacity = 0;
+        sparkles.appendChild(d);
+        const dur = 700 + Math.random()*900;
+        d.animate([
+          {opacity:0, transform:'scale(.6)'},
+          {opacity:1, transform:'scale(1.1)'},
+          {opacity:0, transform:'scale(.2)'}
+        ], { duration: dur, easing:'cubic-bezier(.2,.9,.2,1)'});
+        setTimeout(()=> d.remove(), dur);
+      }
+    }
+
+    /* attach actions */
+    document.getElementById('partyBtn').addEventListener('click', ()=>{ spawn(180); makeSparkles(26) });
+
+    document.getElementById('photoBtn').addEventListener('click', ()=>{
+      // simple placeholder — user can replace with file input or direct image insertion
+      const url = prompt('Paste image URL of Princee (jpg/png) — ya phir "cancel" kar dein:');
+      if(url){ // insert a circular photo on left illustration
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = 'Princee photo';
+        img.style.position = 'absolute';
+        img.style.left = '50%';
+        img.style.bottom = '12%';
+        img.style.transform = 'translateX(-50%)';
+        img.style.width = '140px';
+        img.style.height = '140px';
+        img.style.objectFit = 'cover';
+        img.style.borderRadius = '18px';
+        img.style.boxShadow = '0 12px 34px rgba(0,0,0,0.18)';
+        const visual = document.querySelector('.stage-illustration');
+        // remove old user photo if exists
+        document.querySelectorAll('.stage-illustration .user-photo').forEach(e=>e.remove());
+        img.className = 'user-photo';
+        visual.appendChild(img);
+      }
+    });
+
+    /* music toggle */
+    const audio = document.getElementById('bgAudio');
+    const musicBtn = document.getElementById('musicToggle');
+    let musicOn = false;
+    musicBtn.addEventListener('click', ()=>{
+      if(!musicOn){
+        audio.play().catch(()=>{ alert('Browser blocked autoplay. Press Play on your device to allow audio.'); });
+        musicBtn.textContent = 'Pause Music ✕';
+        musicOn = true;
+      } else {
+        audio.pause(); audio.currentTime = 0;
+        musicBtn.textContent = 'Play Music ♪';
+        musicOn = false;
+      }
+    });
+
+    // preload images to avoid pop-in
+    ['https://i.imgur.com/2KQpVQv.png','https://i.imgur.com/6Y0Qb6u.png','https://i.imgur.com/5Y3Xb9G.png','https://i.imgur.com/0K7Y3vD.png']
+      .forEach(u=>{ const i=new Image(); i.src=u });
+
+    // initial soft sparkles
+    setTimeout(()=> makeSparkles(10), 700);
+
+    // ensure canvas fits initial layout after fonts/images load
+    window.addEventListener('load', ()=>{ setTimeout(()=> { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }, 120) });
+    window.addEventListener('resize', ()=>{ canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; });
+  </script>
+</body>
+</html>
